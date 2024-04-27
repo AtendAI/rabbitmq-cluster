@@ -1,4 +1,5 @@
-version: '3'
+version: '3.9'
+
 services:
   rabbitmq1:
     image: rabbitmq:3-management
@@ -12,7 +13,7 @@ services:
       - ./cluster-entrypoint.sh:/usr/local/bin/cluster-entrypoint.sh
       - .data/rabbitmq/rabbitmq1/data/:/var/lib/rabbitmq/
       - .data/rabbitmq/rabbitmq1/logs/:/var/log/rabbitmq/log
-    entrypoint: /usr/local/bin/cluster-entrypoint.sh
+    entrypoint: ["bash", "/usr/local/bin/cluster-entrypoint.sh"]
 
   rabbitmq2:
     image: rabbitmq:3-management
@@ -26,7 +27,7 @@ services:
       - ./cluster-entrypoint.sh:/usr/local/bin/cluster-entrypoint.sh
       - .data/rabbitmq/rabbitmq2/data/:/var/lib/rabbitmq/
       - .data/rabbitmq/rabbitmq2/logs/:/var/log/rabbitmq/log
-    entrypoint: /usr/local/bin/cluster-entrypoint.sh
+    entrypoint: ["bash", "/usr/local/bin/cluster-entrypoint.sh"]
 
   rabbitmq3:
     image: rabbitmq:3-management
@@ -40,7 +41,7 @@ services:
       - ./cluster-entrypoint.sh:/usr/local/bin/cluster-entrypoint.sh
       - .data/rabbitmq/rabbitmq3/data/:/var/lib/rabbitmq/
       - .data/rabbitmq/rabbitmq3/logs/:/var/log/rabbitmq/log
-    entrypoint: /usr/local/bin/cluster-entrypoint.sh
+    entrypoint: ["bash", "/usr/local/bin/cluster-entrypoint.sh"]
 
   rabbitmq4:
     image: rabbitmq:3-management
@@ -54,7 +55,7 @@ services:
       - ./cluster-entrypoint.sh:/usr/local/bin/cluster-entrypoint.sh
       - .data/rabbitmq/rabbitmq4/data/:/var/lib/rabbitmq/
       - .data/rabbitmq/rabbitmq4/logs/:/var/log/rabbitmq/log
-    entrypoint: /usr/local/bin/cluster-entrypoint.sh
+    entrypoint: ["bash", "/usr/local/bin/cluster-entrypoint.sh"]
 
   rabbitmq5:
     image: rabbitmq:3-management
@@ -68,7 +69,7 @@ services:
       - ./cluster-entrypoint.sh:/usr/local/bin/cluster-entrypoint.sh
       - .data/rabbitmq/rabbitmq5/data/:/var/lib/rabbitmq/
       - .data/rabbitmq/rabbitmq5/logs/:/var/log/rabbitmq/log
-    entrypoint: /usr/local/bin/cluster-entrypoint.sh
+    entrypoint: ["bash", "/usr/local/bin/cluster-entrypoint.sh"]
 
   haproxy:
     image: haproxy:1.7
