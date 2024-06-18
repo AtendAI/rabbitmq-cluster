@@ -9,8 +9,8 @@ services:
       - RABBITMQ_DEFAULT_PASS=PASS
       - RABBITMQ_DEFAULT_VHOST=default
     volumes:
-      - /root/rabbitmq-files/.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
-      - /root/rabbitmq-files/cluster-entrypoint.sh:/usr/local/bin/cluster-entrypoint.sh
+      - /root/rabbitmq-cluster/.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
+      - /root/rabbitmq-cluster/cluster-entrypoint.sh:/usr/local/bin/cluster-entrypoint.sh
       - rabbitmq1_data:/var/lib/rabbitmq/
       - rabbitmq1_logs:/var/log/rabbitmq/log
     entrypoint: ["bash", "/usr/local/bin/cluster-entrypoint.sh"]
@@ -29,8 +29,8 @@ services:
     environment:
       - JOIN_CLUSTER_HOST=rabbitmq1
     volumes:
-      - /root/rabbitmq-files/.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
-      - /root/rabbitmq-files/cluster-entrypoint.sh:/usr/local/bin/cluster-entrypoint.sh
+      - /root/rabbitmq-cluster/.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
+      - /root/rabbitmq-cluster/cluster-entrypoint.sh:/usr/local/bin/cluster-entrypoint.sh
       - rabbitmq2_data:/var/lib/rabbitmq/
       - rabbitmq2_logs:/var/log/rabbitmq/log
     entrypoint: ["bash", "/usr/local/bin/cluster-entrypoint.sh"]
@@ -49,8 +49,8 @@ services:
     environment:
       - JOIN_CLUSTER_HOST=rabbitmq1
     volumes:
-      - /root/rabbitmq-files/.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
-      - /root/rabbitmq-files/cluster-entrypoint.sh:/usr/local/bin/cluster-entrypoint.sh
+      - /root/rabbitmq-cluster/.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
+      - /root/rabbitmq-cluster/cluster-entrypoint.sh:/usr/local/bin/cluster-entrypoint.sh
       - rabbitmq3_data:/var/lib/rabbitmq/
       - rabbitmq3_logs:/var/log/rabbitmq/log
     entrypoint: ["bash", "/usr/local/bin/cluster-entrypoint.sh"]
@@ -69,8 +69,8 @@ services:
     environment:
       - JOIN_CLUSTER_HOST=rabbitmq1
     volumes:
-      - /root/rabbitmq-files/.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
-      - /root/rabbitmq-files/cluster-entrypoint.sh:/usr/local/bin/cluster-entrypoint.sh
+      - /root/rabbitmq-cluster/.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
+      - /root/rabbitmq-cluster/cluster-entrypoint.sh:/usr/local/bin/cluster-entrypoint.sh
       - rabbitmq4_data:/var/lib/rabbitmq/
       - rabbitmq4_logs:/var/log/rabbitmq/log
     entrypoint: ["bash", "/usr/local/bin/cluster-entrypoint.sh"]
@@ -89,8 +89,8 @@ services:
     environment:
       - JOIN_CLUSTER_HOST=rabbitmq1
     volumes:
-      - /root/rabbitmq-files/.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
-      - /root/rabbitmq-files/cluster-entrypoint.sh:/usr/local/bin/cluster-entrypoint.sh
+      - /root/rabbitmq-cluster/.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
+      - /root/rabbitmq-cluster/cluster-entrypoint.sh:/usr/local/bin/cluster-entrypoint.sh
       - rabbitmq5_data:/var/lib/rabbitmq/
       - rabbitmq5_logs:/var/log/rabbitmq/log
     entrypoint: ["bash", "/usr/local/bin/cluster-entrypoint.sh"]
