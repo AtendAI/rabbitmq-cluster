@@ -1,0 +1,32 @@
+version: "3.7"
+
+services:
+  haproxy:
+    image: haproxy:1.7
+    volumes:
+      - /root/rabbitmq-files/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    ports:
+      - 5672:5672
+      - 1936:1936
+    networks:
+      - network_public
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.hostname == evolution-manager
+      labels:
+        - traefik.enable=true
+        - traefik.http.routers.rabbitmq.rule=Host(`rabbitmq.evolution-api-pro.com`)
+        - traefik.http.routers.rabbitmq.entrypoints=websecure
+        - traefik.http.routers.rabbitmq.priority=1
+        - traefik.http.routers.rabbitmq.tls.certresolver=letsencryptresolver
+        - traefik.http.routers.rabbitmq.service=rabbitmq
+        - traefik.http.services.rabbitmq.loadbalancer.server.port=15672
+        - traefik.http.services.rabbitmq.loadbalancer.passHostHeader=1
+
+networks:
+  network_public:
+    external: true
+    name: network_public

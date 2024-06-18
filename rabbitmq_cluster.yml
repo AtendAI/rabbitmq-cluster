@@ -1,0 +1,146 @@
+version: "3.7"
+
+services:
+  rabbitmq1:
+    image: rabbitmq:3-management
+    hostname: rabbitmq1
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=PASS
+      - RABBITMQ_DEFAULT_VHOST=default
+    volumes:
+      - /root/rabbitmq-files/.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
+      - /root/rabbitmq-files/cluster-entrypoint.sh:/usr/local/bin/cluster-entrypoint.sh
+      - rabbitmq1_data:/var/lib/rabbitmq/
+      - rabbitmq1_logs:/var/log/rabbitmq/log
+    entrypoint: ["bash", "/usr/local/bin/cluster-entrypoint.sh"]
+    networks:
+      - network_public
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.hostname == evolution-manager
+
+  rabbitmq2:
+    image: rabbitmq:3-management
+    hostname: rabbitmq2
+    environment:
+      - JOIN_CLUSTER_HOST=rabbitmq1
+    volumes:
+      - /root/rabbitmq-files/.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
+      - /root/rabbitmq-files/cluster-entrypoint.sh:/usr/local/bin/cluster-entrypoint.sh
+      - rabbitmq2_data:/var/lib/rabbitmq/
+      - rabbitmq2_logs:/var/log/rabbitmq/log
+    entrypoint: ["bash", "/usr/local/bin/cluster-entrypoint.sh"]
+    networks:
+      - network_public
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.hostname == evolution-manager
+
+  rabbitmq3:
+    image: rabbitmq:3-management
+    hostname: rabbitmq3
+    environment:
+      - JOIN_CLUSTER_HOST=rabbitmq1
+    volumes:
+      - /root/rabbitmq-files/.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
+      - /root/rabbitmq-files/cluster-entrypoint.sh:/usr/local/bin/cluster-entrypoint.sh
+      - rabbitmq3_data:/var/lib/rabbitmq/
+      - rabbitmq3_logs:/var/log/rabbitmq/log
+    entrypoint: ["bash", "/usr/local/bin/cluster-entrypoint.sh"]
+    networks:
+      - network_public
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.hostname == evolution-manager
+
+  rabbitmq4:
+    image: rabbitmq:3-management
+    hostname: rabbitmq4
+    environment:
+      - JOIN_CLUSTER_HOST=rabbitmq1
+    volumes:
+      - /root/rabbitmq-files/.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
+      - /root/rabbitmq-files/cluster-entrypoint.sh:/usr/local/bin/cluster-entrypoint.sh
+      - rabbitmq4_data:/var/lib/rabbitmq/
+      - rabbitmq4_logs:/var/log/rabbitmq/log
+    entrypoint: ["bash", "/usr/local/bin/cluster-entrypoint.sh"]
+    networks:
+      - network_public
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.hostname == evolution-manager
+
+  rabbitmq5:
+    image: rabbitmq:3-management
+    hostname: rabbitmq5
+    environment:
+      - JOIN_CLUSTER_HOST=rabbitmq1
+    volumes:
+      - /root/rabbitmq-files/.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
+      - /root/rabbitmq-files/cluster-entrypoint.sh:/usr/local/bin/cluster-entrypoint.sh
+      - rabbitmq5_data:/var/lib/rabbitmq/
+      - rabbitmq5_logs:/var/log/rabbitmq/log
+    entrypoint: ["bash", "/usr/local/bin/cluster-entrypoint.sh"]
+    networks:
+      - network_public
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.hostname == evolution-manager
+
+volumes:
+  # node 1
+  rabbitmq1_data:
+    external: true
+    name: rabbitmq1_data
+  rabbitmq1_logs:
+    external: true
+    name: rabbitmq1_logs
+  # node 2
+  rabbitmq2_data:
+    external: true
+    name: rabbitmq2_data
+  rabbitmq2_logs:
+    external: true
+    name: rabbitmq2_logs
+  # node 3
+  rabbitmq3_data:
+    external: true
+    name: rabbitmq3_data
+  rabbitmq3_logs:
+    external: true
+    name: rabbitmq3_logs
+  # node 4
+  rabbitmq4_data:
+    external: true
+    name: rabbitmq4_data
+  rabbitmq4_logs:
+    external: true
+    name: rabbitmq4_logs
+  # node 5
+  rabbitmq5_data:
+    external: true
+    name: rabbitmq5_data
+  rabbitmq5_logs:
+    external: true
+    name: rabbitmq5_logs
+
+networks:
+  network_public:
+    external: true
+    name: network_public
