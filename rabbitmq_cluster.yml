@@ -41,7 +41,7 @@ services:
       replicas: 1
       placement:
         constraints:
-          - node.hostname == evolution-manager
+          - node.hostname == manager
 
   rabbitmq3:
     image: rabbitmq:3-management
@@ -61,7 +61,7 @@ services:
       replicas: 1
       placement:
         constraints:
-          - node.hostname == evolution-manager
+          - node.hostname == manager
 
   rabbitmq4:
     image: rabbitmq:3-management
@@ -81,7 +81,7 @@ services:
       replicas: 1
       placement:
         constraints:
-          - node.hostname == evolution-manager
+          - node.hostname == manager
 
   rabbitmq5:
     image: rabbitmq:3-management
@@ -101,7 +101,7 @@ services:
       replicas: 1
       placement:
         constraints:
-          - node.hostname == evolution-manager
+          - node.hostname == manager
 
 volumes:
   # node 1

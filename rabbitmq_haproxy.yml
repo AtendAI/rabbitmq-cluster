@@ -4,7 +4,7 @@ services:
   haproxy:
     image: haproxy:1.7
     volumes:
-      - /root/rabbitmq-files/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+      - /root/rabbitmq-cluster/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
     ports:
       - 5672:5672
       - 1936:1936
