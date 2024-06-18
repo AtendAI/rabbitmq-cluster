@@ -15,10 +15,10 @@ services:
       replicas: 1
       placement:
         constraints:
-          - node.hostname == evolution-manager
+          - node.hostname == manager
       labels:
         - traefik.enable=true
-        - traefik.http.routers.rabbitmq.rule=Host(`rabbitmq.evolution-api-pro.com`)
+        - traefik.http.routers.rabbitmq.rule=Host(`rabbitmq.site.com`)
         - traefik.http.routers.rabbitmq.entrypoints=websecure
         - traefik.http.routers.rabbitmq.priority=1
         - traefik.http.routers.rabbitmq.tls.certresolver=letsencryptresolver
